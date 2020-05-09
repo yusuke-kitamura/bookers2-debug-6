@@ -22,7 +22,7 @@
 
 					<td><%= book.body %></td>
 
-					<td><%= render 'favorites/favorite', books: book %></td>
+					<td id = "favorites_btn_<%= book.id %>"><%= render 'favorites/favorite', book: book %></td>
 
 					<td>
 						<span>コメント数:</span>
