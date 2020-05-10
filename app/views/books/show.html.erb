@@ -17,8 +17,8 @@
 		<h2>Book detail</h2>
 
 		<table class="table">
-				<tr>
-					<td>
+				<tr class = "book_<%= @book.id %>">
+				<td>
 						<%= link_to (@book.user) do %>
 						<%= attachment_image_tag @book.user, :profile_image, :fill, 100, 100, fallback: "no-image-mini.jpg" %><br>
 						<%= @book.user.name %>
@@ -53,20 +53,23 @@
 					<td><%= link_to "Destroy",@book, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{@book.id}" %></td>
 					<% end %>
 				</tr>
-			</table>
+		</table>
 
 			<!-- コメント一覧 -->
-			<%= render 'books/comments', book: @book %>
-			<!-- コメント一覧 -->
+		<table class = "show-tb comment_<%= @book.id %>">
 
+			<h2>Book Comments</h2>
+			<%= render 'books/comment', book: @book %>
+		</table>
+			<!-- コメント一覧 -->
 
 			<!-- コメントform -->
-			<div class="comment_form">
-				<%= form_with [@book, @book_comment] do |f| %>
+		<div class="comment_form">
+				<%= form_with(model:[@book, @book_comment], remote: true) do |f| %>
 				<%= f.text_area :comment, size:"90x5" %>
 				<%= f.submit "Comment", class: "btn btn-primary" %>
 				<% end %>
-			</div>
+		</div>
 			<!-- コメントform -->
 
 	</div>

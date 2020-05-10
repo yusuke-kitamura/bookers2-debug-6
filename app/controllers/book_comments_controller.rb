@@ -9,11 +9,8 @@ class BookCommentsController < ApplicationController
 
 	def destroy
 		@book_comment = BookComment.find(params[:id])
-		if @book_comment.destroy
-			redirect_back(fallback_location: root_path)
-		else
-			render action: :show
-		end
+		@book = @book_comment.book
+		@book_comment.destroy
 	end
 
 	private
